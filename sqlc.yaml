@@ -1,0 +1,19 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "sql/queries/subscriptions.sql"
+    schema: "migrations"
+    gen:
+      go:
+        package: "db"
+        out: "internal/repository/db"
+        sql_package: "pgx/v5"
+        emit_json_tags: true
+        emit_params_struct_pointers: false
+        emit_result_struct_pointers: false
+        emit_methods_with_db_argument: false
+        overrides:
+          - db_type: "uuid"
+            go_type: "github.com/google/uuid.UUID"
+          - db_type: "pg_catalog.int4"
+            go_type: "int32"

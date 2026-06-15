@@ -1,0 +1,10 @@
+.env
+*.exe
+*.test
+tmp/
+internal/repository/db/
+docs/swagger.json
+docs/swagger.yaml
+bin/
+coverage.out
+coverage.html
