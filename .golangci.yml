@@ -1,14 +1,15 @@
 version: "2"
+
 linters:
   enable:
-    - govet # catches suspicious code (e.g. wrong printf args)
-    - errcheck # make sure you're handling errors (very important in Go)
-    - staticcheck # advanced bug detection
-    - unused # flags unused variables and functions
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
 
 formatters:
   enable:
-    - gofmt # enforce standard formatting
+    - gofmt
   settings:
     gofmt:
       simplify: true
