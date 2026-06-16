@@ -132,7 +132,11 @@ func (r *SubscriptionRepo) List(ctx context.Context, input domain.ListSubscripti
 	}
 
 	if input.UserID != nil {
-		params.UserID = pgtype.UUID{Bytes: *input.UserID, Valid: true}
+		uid, err := uuid.Parse(*input.UserID)
+		if err != nil {
+			return nil, apperrors.New(apperrors.ErrInvalidInput, "invalid user_id: "+*input.UserID)
+		}
+		params.UserID = pgtype.UUID{Bytes: uid, Valid: true}
 	}
 
 	if input.ServiceName != nil {
@@ -163,7 +167,11 @@ func (r *SubscriptionRepo) GetTotalCost(ctx context.Context, input domain.TotalC
 	}
 
 	if input.UserID != nil {
-		params.UserID = pgtype.UUID{Bytes: *input.UserID, Valid: true}
+		uid, err := uuid.Parse(*input.UserID)
+		if err != nil {
+			return 0, apperrors.New(apperrors.ErrInvalidInput, "invalid user_id: "+*input.UserID)
+		}
+		params.UserID = pgtype.UUID{Bytes: uid, Valid: true}
 	}
 
 	if input.ServiceName != nil {

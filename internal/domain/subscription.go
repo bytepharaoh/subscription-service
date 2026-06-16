@@ -33,17 +33,17 @@ type UpdateSubscriptionInput struct {
 }
 
 type ListSubscriptionsInput struct {
-	UserID      *uuid.UUID `form:"user_id"`
-	ServiceName *string    `form:"service_name"`
-	Page        int        `form:"page"    binding:"omitempty,min=1"`
-	PageSize    int        `form:"page_size" binding:"omitempty,min=1,max=100"`
+	UserID      *string `form:"user_id"`
+	ServiceName *string `form:"service_name"`
+	Page        int     `form:"page"      binding:"omitempty,min=1"`
+	PageSize    int     `form:"page_size" binding:"omitempty,min=1,max=100"`
 }
 
 type TotalCostInput struct {
-	UserID      *uuid.UUID `form:"user_id"`
-	ServiceName *string    `form:"service_name"`
-	PeriodStart string     `form:"period_start" binding:"required"`
-	PeriodEnd   string     `form:"period_end"   binding:"required"`
+	UserID      *string `form:"user_id"`
+	ServiceName *string `form:"service_name"`
+	PeriodStart string  `form:"period_start" binding:"required"`
+	PeriodEnd   string  `form:"period_end"   binding:"required"`
 }
 
 type TotalCostResult struct {

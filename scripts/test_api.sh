@@ -152,7 +152,14 @@ STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$API/$ID2")
 
 STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE "$API/00000000-0000-0000-0000-000000000000")
 [ "$STATUS" = "404" ] && pass "DELETE non-existent → 404" || fail "DELETE non-existent → $STATUS"
+# ── Cleanup: delete all existing subscriptions ────────────────────────────────
+section "Cleanup"
 
+IDS=$(curl -s "$API" | grep -o '"id":"[^"]*"' | cut -d'"' -f4)
+for ID in $IDS; do
+  curl -s -X DELETE "$API/$ID" > /dev/null
+done
+echo -e "${YELLOW}cleaned up existing records${NC}"
 # ── Summary ───────────────────────────────────────────────────────────────────
 echo -e "\n────────────────────────────────"
 echo -e "${GREEN}PASSED: $PASS${NC}"

@@ -320,7 +320,7 @@ func TestSubscriptionService_Delete(t *testing.T) {
 // ── GetTotalCost ──────────────────────────────────────────────────────────────
 
 func TestSubscriptionService_GetTotalCost(t *testing.T) {
-	userID := uuid.New()
+	userID := uuid.New().String()
 	svcName := "Yandex Plus"
 
 	tests := []struct {
